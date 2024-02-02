@@ -68,4 +68,5 @@ erie_entropy <- colwise(entropy_positive)(as.data.frame(erie_use[rowSums(erie_us
 erie_weight <- (1 - erie_entropy) / sum(1 - erie_entropy)
 ontario_entropy <- colwise(entropy_positive)(as.data.frame(ontario_use[rowSums(ontario_use) > 0, ]))
 ontario_weight <- (1 - ontario_entropy) / sum(1 - ontario_entropy)
+max.col(rbind(superior_weight, michigan_weight, huron_weight, erie_weight, ontario_weight))
 write.csv(rbind(superior_weight, michigan_weight, huron_weight, erie_weight, ontario_weight), "第一问.csv", row.names = c("Superior", "Michigan", "Huron", "Erie", "Ontario"))
