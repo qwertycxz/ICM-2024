@@ -1,0 +1,2 @@
+表层水温、冰集中度：https://coastwatch.glerl.noaa.gov/statistics
+蒸发量、降水量、径流量：https://www.glerl.noaa.gov/pubs/tech_reports/glerl-083/UpdatedFiles
