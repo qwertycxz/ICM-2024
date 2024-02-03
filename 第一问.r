@@ -1,4 +1,5 @@
-library("plyr")
+library(plotrix)
+library(plyr)
 # 数据下载
 superior_use <- NA
 for (i in 2012:2022) {
@@ -70,3 +71,4 @@ ontario_entropy <- colwise(entropy_positive)(as.data.frame(ontario_use[rowSums(o
 ontario_weight <- (1 - ontario_entropy) / sum(1 - ontario_entropy)
 max.col(rbind(superior_weight, michigan_weight, huron_weight, erie_weight, ontario_weight))
 write.csv(rbind(superior_weight, michigan_weight, huron_weight, erie_weight, ontario_weight), "第一问.csv", row.names = c("Superior", "Michigan", "Huron", "Erie", "Ontario"))
+# 画图
