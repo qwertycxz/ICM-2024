@@ -71,4 +71,17 @@ ontario_entropy <- colwise(entropy_positive)(as.data.frame(ontario_use[rowSums(o
 ontario_weight <- (1 - ontario_entropy) / sum(1 - ontario_entropy)
 max.col(rbind(superior_weight, michigan_weight, huron_weight, erie_weight, ontario_weight))
 write.csv(rbind(superior_weight, michigan_weight, huron_weight, erie_weight, ontario_weight), "第一问.csv", row.names = c("Superior", "Michigan", "Huron", "Erie", "Ontario"))
-# 画图
+# Topsis
+vector_normalize <- function(x) {
+    x / sqrt(sum(x^2))
+}
+mutiply <- function(use, weight) {
+    dataset_normal <- colwise(vector_normalize)(as.data.frame(use[rowSums(use) > 0, ]))
+    dataset_normal_weight <-  adply(dataset_normal,1,.fun = function(x){x*weight})
+    best_case <- colwise(max)(dataset_normal_weight)
+    worst_case <- colwise(min)(dataset_normal_weight)
+    distance_best <- apply(dataset_normal_weight, 1, function(x){sqrt(sum((x -best_case) ^ 2))})
+    distance_worst <- apply(dataset_normal_weight, 1, function(x){sqrt(sum((x - worst_case) ^ 2))})
+    return(distance_worst / (distance_best + distance_worst) * weight)
+}
+write.csv(rbind(mutiply(superior_use, superior_weight), mutiply(michigan_use, michigan_weight), mutiply(huron_use, huron_weight), mutiply(erie_use, erie_weight), mutiply(ontario_use, ontario_weight)), "第一问topsis.csv", row.names = c("Superior", "Michigan", "Huron", "Erie", "Ontario"))
