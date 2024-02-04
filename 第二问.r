@@ -226,3 +226,15 @@ michigan_basin_mean_wind_speed <- michigan_basin_mean_wind_speed + 0.4
 huron_basin_mean_wind_speed <- huron_basin_mean_wind_speed + 0.4
 erie_basin_mean_wind_speed <- erie_basin_mean_wind_speed + 0.4
 ontario_basin_mean_wind_speed <- ontario_basin_mean_wind_speed + 0.4
+# 降水
+load("降水径流量.RData")
+st_mary_flow <- st_mary_flow[as.character(2000:2020), ] + superior_precipitation_flow * 0.05
+st_clair_flow <- st_clair_flow[as.character(2000:2020), ] + (michigan_precipitation_flow + huron_precipitation_flow) * 0.05
+detroit_flow <- st_clair_flow[as.character(2000:2020), ] + (michigan_precipitation_flow + huron_precipitation_flow) * 0.05
+niagara_flow <- niagara_flow[as.character(2000:2020), ] + erie_precipitation_flow * 0.05
+st_lawrence_flow <- st_lawrence_flow[as.character(2000:2020), ] + ontario_precipitation_flow * 0.05
+st_mary_flow <- st_mary_flow[as.character(2000:2020), ] + superior_precipitation_flow * 0.1
+st_clair_flow <- st_clair_flow[as.character(2000:2020), ] + (michigan_precipitation_flow + huron_precipitation_flow) * 0.1
+detroit_flow <- st_clair_flow[as.character(2000:2020), ] + (michigan_precipitation_flow + huron_precipitation_flow) * 0.1
+niagara_flow <- niagara_flow[as.character(2000:2020), ] + erie_precipitation_flow * 0.1
+st_lawrence_flow <- st_lawrence_flow[as.character(2000:2020), ] + ontario_precipitation_flow * 0.1
