@@ -109,8 +109,11 @@ write.csv(cor_winter, "第二问/冬.csv")
 
 # 变异系数
 nor_min_max <- function(x) {
-  y <- na.omit(x)
-  return((x - min(y)) / (max(y) - min(y)))
+    y <- na.omit(x)
+    return((x - min(y)) / (max(y) - min(y)))
+}
+nor_min_max <- function(x) {
+    return(scale(unlist(x), FALSE))
 }
 superior_name <- c("S均温", "S露点", "S风速", "S云盖", "S水温", "S出MH入")
 michigan_name <- c("S出MH入", "M均温", "M露点", "M风速", "M云盖", "M水温", "MH出")
@@ -128,6 +131,7 @@ getSuperiorVariation <- function(month) {
     }
     effctive_variations <- apply(cbind(matrixToRow(superior_basin_mean_air_temperature), matrixToRow(superior_basin_mean_dewpoint), matrixToRow(superior_basin_mean_wind_speed), matrixToRow(superior_basin_mean_cloud_cover), matrixToRow(superior_mean_surface_water_temperature), matrixToRow(st_mary_flow)), 2, nor_min_max)
     colnames(effctive_variations) <- c(superior_name)
+    # View(cbind(matrixToRow(superior_basin_mean_air_temperature), matrixToRow(superior_basin_mean_dewpoint), matrixToRow(superior_basin_mean_wind_speed), matrixToRow(superior_basin_mean_cloud_cover), matrixToRow(superior_mean_surface_water_temperature), matrixToRow(st_mary_flow)))
     return(apply(effctive_variations, 2, sd, TRUE) / colMeans(effctive_variations, TRUE))
 }
 getMichiganVariation <- function(month) {
@@ -162,7 +166,8 @@ getOntarioVariation <- function(month) {
     colnames(effctive_variations) <- ontario_name
     return(apply(effctive_variations, 2, sd, TRUE) / colMeans(effctive_variations, TRUE))
 }
-superior_basin_mean_air_temperature <- superior_basin_mean_air_temperature + abs(superior_basin_mean_air_temperature) * 0.05
+st_mary_flow <- st_mary_flow + 100
+# superior_basin_mean_air_temperature <- superior_basin_mean_air_temperature + abs(superior_basin_mean_air_temperature) * 0.05
 superior_variations[, "春"] <- getSuperiorVariation(3:5)
 superior_variations[, "夏"] <- getSuperiorVariation(6:8)
 superior_variations[, "秋"] <- getSuperiorVariation(9:11)
