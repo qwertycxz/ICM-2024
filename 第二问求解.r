@@ -51,6 +51,7 @@ superior_mean_water_level <- getOfficalData("Lake Superior")
 michigan_huron_mean_water_level <- getOfficalData("Lake Michigan and Lake Huron")
 erie_mean_water_level <- getOfficalData("Lake Erie")
 ontario_mean_water_level <- getOfficalData("Lake Ontario")
+
 superior_predict_water_level <- c()
 for (i in 1:12) {
     superior_predict_water_level <- c(superior_predict_water_level, getWaterLevel(i, michigan = michigan_huron_mean_water_level["2019", i], huron = michigan_huron_mean_water_level["2019", i], erie = erie_mean_water_level["2019", i], ontario = ontario_mean_water_level["2019", i]))
@@ -75,5 +76,11 @@ predict_water_level <- rbind(superior_predict_water_level, michigan_predict_wate
 colnames(predict_water_level) <- month.abb
 row.names(predict_water_level) <- c("Superior", "Michigan", "Huron", "Erie", "Ontario")
 write.csv(predict_water_level, "第二问/第二问预测.csv")
-interactivity
-interactivity <- read.csv("交互性/测试.csv", fileEncoding = "UTF-8-BOM")
+
+# 第三问
+# interactivity <- read.csv("交互性/测试.csv", fileEncoding = "UTF-8-BOM")
+interactivity <- read_excel("交互性/测试.xlsx")
+write.csv(predict_water_level, "交互性/St.Marys+100.csv")
+write.csv(predict_water_level, "交互性/St.Marys+200.csv")
+write.csv(predict_water_level, "交互性/St.Lawrence+400.csv")
+write.csv(predict_water_level, "交互性/St.Lawrence+800.csv")

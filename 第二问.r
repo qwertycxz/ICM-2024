@@ -166,7 +166,6 @@ getOntarioVariation <- function(month) {
     colnames(effctive_variations) <- ontario_name
     return(apply(effctive_variations, 2, sd, TRUE) / colMeans(effctive_variations, TRUE))
 }
-st_mary_flow <- st_mary_flow + 100
 # superior_basin_mean_air_temperature <- superior_basin_mean_air_temperature + abs(superior_basin_mean_air_temperature) * 0.05
 superior_variations[, "春"] <- getSuperiorVariation(3:5)
 superior_variations[, "夏"] <- getSuperiorVariation(6:8)
@@ -199,3 +198,8 @@ huron_variations <- huron_variations / colSums(huron_variations)
 erie_variations <- erie_variations / colSums(erie_variations)
 ontario_variations <- ontario_variations / colSums(ontario_variations)
 superior_interactivity <- matrix(dimnames = list(unique(c(michigan_name, huron_name, erie_name, ontario_name)), c("春", "夏", "秋", "冬")), ncol = 4, nrow = 24)
+
+st_mary_flow <- st_mary_flow + 100
+st_mary_flow <- st_mary_flow + 200
+st_lawrence_flow <- st_lawrence_flow + 400
+st_lawrence_flow <- st_lawrence_flow + 800
