@@ -166,7 +166,6 @@ getOntarioVariation <- function(month) {
     colnames(effctive_variations) <- ontario_name
     return(apply(effctive_variations, 2, sd, TRUE) / colMeans(effctive_variations, TRUE))
 }
-# superior_basin_mean_air_temperature <- superior_basin_mean_air_temperature + abs(superior_basin_mean_air_temperature) * 0.05
 superior_variations[, "春"] <- getSuperiorVariation(3:5)
 superior_variations[, "夏"] <- getSuperiorVariation(6:8)
 superior_variations[, "秋"] <- getSuperiorVariation(9:11)
@@ -199,7 +198,31 @@ erie_variations <- erie_variations / colSums(erie_variations)
 ontario_variations <- ontario_variations / colSums(ontario_variations)
 superior_interactivity <- matrix(dimnames = list(unique(c(michigan_name, huron_name, erie_name, ontario_name)), c("春", "夏", "秋", "冬")), ncol = 4, nrow = 24)
 
+# 第三问
+# 流量
 st_mary_flow <- st_mary_flow + 100
 st_mary_flow <- st_mary_flow + 200
 st_lawrence_flow <- st_lawrence_flow + 400
 st_lawrence_flow <- st_lawrence_flow + 800
+# 均温
+superior_basin_mean_air_temperature <- superior_basin_mean_air_temperature + 0.5
+michigan_basin_mean_air_temperature <- michigan_basin_mean_air_temperature + 0.5
+huron_basin_mean_air_temperature <- huron_basin_mean_air_temperature + 0.5
+erie_basin_mean_air_temperature <- erie_basin_mean_air_temperature + 0.5
+ontario_basin_mean_air_temperature <- ontario_basin_mean_air_temperature + 0.5
+superior_basin_mean_air_temperature <- superior_basin_mean_air_temperature + 1
+michigan_basin_mean_air_temperature <- michigan_basin_mean_air_temperature + 1
+huron_basin_mean_air_temperature <- huron_basin_mean_air_temperature + 1
+erie_basin_mean_air_temperature <- erie_basin_mean_air_temperature + 1
+ontario_basin_mean_air_temperature <- ontario_basin_mean_air_temperature + 1
+# 风速
+superior_basin_mean_wind_speed <- superior_basin_mean_wind_speed + 0.2
+michigan_basin_mean_wind_speed <- michigan_basin_mean_wind_speed + 0.2
+huron_basin_mean_wind_speed <- huron_basin_mean_wind_speed + 0.2
+erie_basin_mean_wind_speed <- erie_basin_mean_wind_speed + 0.2
+ontario_basin_mean_wind_speed <- ontario_basin_mean_wind_speed + 0.2
+superior_basin_mean_wind_speed <- superior_basin_mean_wind_speed + 0.4
+michigan_basin_mean_wind_speed <- michigan_basin_mean_wind_speed + 0.4
+huron_basin_mean_wind_speed <- huron_basin_mean_wind_speed + 0.4
+erie_basin_mean_wind_speed <- erie_basin_mean_wind_speed + 0.4
+ontario_basin_mean_wind_speed <- ontario_basin_mean_wind_speed + 0.4
