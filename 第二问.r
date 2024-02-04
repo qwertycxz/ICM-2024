@@ -162,6 +162,7 @@ getOntarioVariation <- function(month) {
     colnames(effctive_variations) <- ontario_name
     return(apply(effctive_variations, 2, sd, TRUE) / colMeans(effctive_variations, TRUE))
 }
+superior_basin_mean_air_temperature <- superior_basin_mean_air_temperature + abs(superior_basin_mean_air_temperature) * 0.05
 superior_variations[, "春"] <- getSuperiorVariation(3:5)
 superior_variations[, "夏"] <- getSuperiorVariation(6:8)
 superior_variations[, "秋"] <- getSuperiorVariation(9:11)
