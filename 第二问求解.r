@@ -90,3 +90,28 @@ write.csv(predict_water_level, "交互性/风速+0.2.csv")
 write.csv(predict_water_level, "交互性/风速+0.4.csv")
 write.csv(predict_water_level, "交互性/降雨+5%.csv")
 write.csv(predict_water_level, "交互性/降雨+10%.csv")
+
+superior_predict_water_level <- c()
+for (i in 1:12) {
+    superior_predict_water_level <- c(superior_predict_water_level, getWaterLevel(i, michigan = michigan_huron_mean_water_level["2017", i], huron = michigan_huron_mean_water_level["2017", i], erie = erie_mean_water_level["2017", i], ontario = ontario_mean_water_level["2017", i]))
+}
+michigan_predict_water_level <- c()
+for (i in 1:12) {
+    michigan_predict_water_level <- c(michigan_predict_water_level, getWaterLevel(i, superior = superior_mean_water_level["2017", i], huron = NaN, erie = erie_mean_water_level["2017", i], ontario = ontario_mean_water_level["2017", i]))
+}
+huron_predict_water_level <- c()
+for (i in 1:12) {
+    huron_predict_water_level <- c(huron_predict_water_level, getWaterLevel(i, superior = superior_mean_water_level["2017", i], michigan = NaN, erie = erie_mean_water_level["2017", i], ontario = ontario_mean_water_level["2017", i]))
+}
+erie_predict_water_level <- c()
+for (i in 1:12) {
+    erie_predict_water_level <- c(erie_predict_water_level, getWaterLevel(i, superior = superior_mean_water_level["2017", i], michigan = michigan_huron_mean_water_level["2017", i], huron = michigan_huron_mean_water_level["2017", i], ontario = ontario_mean_water_level["2017", i]))
+}
+ontario_predict_water_level <- c()
+for (i in 1:12) {
+    ontario_predict_water_level <- c(ontario_predict_water_level, getWaterLevel(i, superior = superior_mean_water_level["2017", i], michigan = michigan_huron_mean_water_level["2017", i], huron = michigan_huron_mean_water_level["2017", i], erie = erie_mean_water_level["2017", i]))
+}
+predict_water_level <- rbind(superior_predict_water_level, michigan_predict_water_level, huron_predict_water_level, erie_predict_water_level, ontario_predict_water_level)
+colnames(predict_water_level) <- month.abb
+row.names(predict_water_level) <- c("Superior", "Michigan", "Huron", "Erie", "Ontario")
+write.csv(predict_water_level, "交互性/第三问预测.csv")
