@@ -2,3 +2,8 @@
 2024 数学建模美赛 代码库
 
 Just some hot garbage here.
+
+---
+![yay](yay.png "yay")
+
+NICE
